@@ -33,10 +33,10 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarText">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link mx-2" href="index.html">News</a>
+              <a class="nav-link mx-2 nav-hover" href="index.html">News</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2" href="blog.html">Blog</a>
+              <a class="nav-link mx-2 nav-hover" href="blog.html">Blog</a>
             </li>
           </ul>
           <span class="navbar-text">
@@ -68,7 +68,7 @@
 
     <!-- -------- category news found box start -------- -->
     <div>
-      <input id="category-found" class="form-control fw-semibold" type="text" value="" placeholder=""
+      <input id="category-found" class="form-control fw-semibold py-2 bg-light mt-2 text-black text-opacity-75" type="text" value="" placeholder=""
         aria-label="readonly input example" readonly />
     </div>
     <!-- -------- category news found box end -------- -->
@@ -98,12 +98,10 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="newsDetailsModalLabel"></h5>
+              <h5 class="modal-title px-3 pt-1" id="newsDetailsModalLabel"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <div id="news-details" class="modal-body"></div>
-
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                 Close
