@@ -1,5 +1,6 @@
 /* ============ load all news category ============ */
 const loadAllCategories = () => {
+  toggleSpinner(true); // start spinner
   const url = "https://openapi.programming-hero.com/api/news/categories";
   fetch(url)
     .then((res) => res.json())
@@ -9,7 +10,7 @@ const loadAllCategories = () => {
 
 /* ============ display all news category ============ */
 const displayAllCategories = (categories) => {
-  console.log(categories);
+  //console.log(categories);
   const categoriesNavbar = document.getElementById("categories-navbar");
   categories.forEach((category) => {
     //console.log(category);
@@ -25,6 +26,16 @@ const displayAllCategories = (categories) => {
   });
 };
 
+/* ========== spinner ========== */
+const toggleSpinner = (isLoading) => {
+  const spinner = document.getElementById("spinner");
+  if (isLoading) {
+    spinner.classList.remove("d-none");
+  } else {
+    spinner.classList.add("d-none");
+  }
+};
+
 /* ============ load news in a category ============ */
 const loadNewsInACategory = (categoryId, categoryName) => {
   const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
@@ -33,11 +44,13 @@ const loadNewsInACategory = (categoryId, categoryName) => {
     .then((data) => displayNewsInACategory(data.data, categoryName))
     .catch((error) => console.log(error));
 };
+loadNewsInACategory("03", "International News");
 
 /* ============ display news in a category ============ */
 const displayNewsInACategory = (allNews, categoryName) => {
+  // sorting news by total view
   allNews.sort((a, b) => b.total_view - a.total_view);
-  console.log(allNews);
+  //console.log(allNews);
 
   const newsContainer = document.getElementById("news-in-category");
   newsContainer.textContent = "";
@@ -60,9 +73,9 @@ const displayNewsInACategory = (allNews, categoryName) => {
               <h5 class="card-title">${news.title}</h5>
               <p class="card-text">
                 ${news.details.length > 200
-        ? news.details.slice(0, 200) + "..."
-        : news.details
-      }
+                ? news.details.slice(0, 200) + "..."
+                : news.details
+              }
               </p>
               <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex gap-2 align-items-center">
@@ -89,7 +102,7 @@ const displayNewsInACategory = (allNews, categoryName) => {
                 <i class="fa-regular fa-star text-warning"></i>
               </div>
               <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" onclick="loadNewsDetails('${news._id
-      }')">Details
+              }')">Details
               </button>
              </div>
             </div>
@@ -98,9 +111,10 @@ const displayNewsInACategory = (allNews, categoryName) => {
       </div>
     `;
     newsContainer.appendChild(newsDiv);
+    toggleSpinner(false); //stop spinner
   });
 
-  // category items found result
+  /* ============ category news number found  ============ */
   const categoryFound = document.getElementById("category-found");
   const newsNumberInCategory = allNews.length;
   if (newsNumberInCategory > 0) {
@@ -120,11 +134,9 @@ const loadNewsDetails = (newsId) => {
 };
 
 const displayNewsDetails = (newsDetails) => {
-  console.log(newsDetails);
-
+  //console.log(newsDetails);
   const newsDetailsModal = document.getElementById("newsDetailsModalLabel");
   newsDetailsModal.innerText = newsDetails.title;
-
   const newsAuthor = document.getElementById("news-details");
   newsAuthor.innerHTML = `
   <div id="news-details" class="modal-body">
@@ -137,6 +149,4 @@ const displayNewsDetails = (newsDetails) => {
 </div>
   `;
 };
-
 loadAllCategories();
-

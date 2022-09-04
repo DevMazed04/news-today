@@ -66,15 +66,25 @@
     </div>
     <!-- -------- categories end -------- -->
 
-    <!-- -------- category items found box start -------- -->
+    <!-- -------- category news found box start -------- -->
     <div>
       <input id="category-found" class="form-control fw-semibold" type="text" value="" placeholder=""
         aria-label="readonly input example" readonly />
     </div>
-    <!-- -------- category items found box end -------- -->
+    <!-- -------- category news found box end -------- -->
   </header>
 
   <main class="container">
+    <!-- -------- spinner start -------- -->
+    <section>
+      <div id="spinner" class="d-flex justify-content-center align-items-center h-spinner my-5 d-none">
+        <div class="spinner-border text-info" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </section>
+    <!-- -------- spinner end -------- -->
+
     <!-- -------- news in category start -------- -->
     <section>
       <div id="news-in-category" class="row row-cols-1 g-3 mt-5"></div>
@@ -88,15 +98,11 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="newsDetailsModalLabel">
-
-              </h5>
+              <h5 class="modal-title" id="newsDetailsModalLabel"></h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div id="news-details" class="modal-body">
-
-            </div>
+            <div id="news-details" class="modal-body"></div>
 
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -110,16 +116,11 @@
     <!-- -------- news details modal end -------- -->
   </main>
 
-  <!--  <footer class="text-white text-center bg-dark pt-4 pb-3 pb-sm-4">
+  <footer class="text-white text-center bg-dark py- pt-4 pb-2">
     <div class="mx-auto">
       <h2 class="text-center fw-semibold mt-sm-3 mt-lg-5 mb-3 pt-lg-4 fs-tab">
         News Today
       </h2>
-      <div class="fw-lighter my-2">
-        <a href="index.html" class="text-white text-decoration-none"><small>Privacy Policy</small></a>
-        |
-        <a href="index.html" class="text-white text-decoration-none"><small>Terms of Use</small></a>
-      </div>
 
       <div class="text-center mb-2">
         <div class="fs-5">
@@ -134,7 +135,7 @@
         <a class="text-white text-decoration-none" href="index.html">News Today</a>
       </p>
     </div>
-  </footer> -->
+  </footer>
 
   <!-- scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
