@@ -68,17 +68,46 @@
 
     <!-- -------- category items found box start -------- -->
     <div>
-      <input id="category-found" class="form-control" type="text" value="" placeholder=""
+      <input id="category-found" class="form-control fw-semibold" type="text" value="" placeholder=""
         aria-label="readonly input example" readonly />
-      <!-- <input id="category-found" type="text" placeholder="" /> -->
     </div>
     <!-- -------- category items found box end -------- -->
   </header>
 
   <main class="container">
+    <!-- -------- news in category start -------- -->
     <section>
       <div id="news-in-category" class="row row-cols-1 g-3 mt-5"></div>
     </section>
+    <!-- -------- news in category end -------- -->
+
+    <!-- -------- news details modal start -------- -->
+    <div class="modal-dialog-centered modal-dialog-scrollable">
+      <div id="newsDetailsModal" class="modal fade" tabindex="-1" aria-labelledby="newsDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newsDetailsModalLabel">
+
+              </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div id="news-details" class="modal-body">
+              
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -------- news details modal end -------- -->
   </main>
 
   <!--  <footer class="text-white text-center bg-dark pt-4 pb-3 pb-sm-4">

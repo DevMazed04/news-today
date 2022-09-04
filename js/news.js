@@ -27,7 +27,6 @@ const displayAllCategories = (categories) => {
 
 /* ============ load news in a category ============ */
 const loadNewsInACategory = (categoryId, categoryName) => {
-  console.log(categoryId);
   const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
   fetch(url)
     .then((res) => res.json())
@@ -43,7 +42,7 @@ const displayNewsInACategory = (allNews, categoryName) => {
   const newsContainer = document.getElementById("news-in-category");
   newsContainer.textContent = "";
   allNews.forEach((news) => {
-    console.log(news);
+    //console.log(news);
     const newsDiv = document.createElement("div");
     newsDiv.classList.add("col");
     newsDiv.innerHTML = `
@@ -59,11 +58,11 @@ const displayNewsInACategory = (allNews, categoryName) => {
           <div class="col-md-8">
             <div class="card-body">
               <h5 class="card-title">${news.title}</h5>
-
               <p class="card-text">
                 ${news.details.length > 200
         ? news.details.slice(0, 200) + "..."
-        : news.details}
+        : news.details
+      }
               </p>
               <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex gap-2 align-items-center">
@@ -82,7 +81,6 @@ const displayNewsInACategory = (allNews, categoryName) => {
                 <p><i class="fa-solid fa-eye"></i></p>
                 <p class="fw-bold">${news.total_view}</p>
               </div>
-
               <div class="d-none d-sm-block">
                 <i class="fa-solid fa-star text-warning"></i>
                 <i class="fa-solid fa-star text-warning"></i>
@@ -90,7 +88,9 @@ const displayNewsInACategory = (allNews, categoryName) => {
                 <i class="fa-regular fa-star text-warning"></i>
                 <i class="fa-regular fa-star text-warning"></i>
               </div>
-              <button class="btn btn-sm btn-outline-primary">Details</button>
+              <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#newsDetailsModal" onclick="loadNewsDetails('${news._id
+      }')">Details
+              </button>
              </div>
             </div>
           </div>
@@ -110,4 +110,33 @@ const displayNewsInACategory = (allNews, categoryName) => {
   }
 };
 
+/* ============ load news details ============ */
+const loadNewsDetails = (newsId) => {
+  const url = `https://openapi.programming-hero.com/api/news/${newsId}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayNewsDetails(data.data[0]))
+    .catch((error) => console.log(error));
+};
+
+const displayNewsDetails = (newsDetails) => {
+  console.log(newsDetails);
+
+  const newsDetailsModal = document.getElementById("newsDetailsModalLabel");
+  newsDetailsModal.innerText = newsDetails.title;
+
+  const newsAuthor = document.getElementById("news-details");
+  newsAuthor.innerHTML = `
+  <div id="news-details" class="modal-body">
+    <img class="img-fluid mb-4" src="${newsDetails.image_url}" alt="">
+    <p><b>Published Date:</b> ${newsDetails.author.published_date} </p>
+    <p><b>Author Name:</b> ${newsDetails.author.name} </p>
+    <p><b>Total Views:</b> ${newsDetails.total_view}</p>
+    <p><b>Ratings:</b> ${newsDetails.rating.number} </p>
+    <p><b>Description:</b> ${newsDetails.details}</p>
+</div>
+  `;
+};
+
 loadAllCategories();
+
