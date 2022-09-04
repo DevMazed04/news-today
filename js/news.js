@@ -1,4 +1,3 @@
-console.log('hello');
 /* ============ load all news category ============ */
 const loadAllCategories = () => {
     const url = "https://openapi.programming-hero.com/api/news/categories";
@@ -25,5 +24,7 @@ const displayAllCategories = (categories) => {
         categoriesNavbar.appendChild(ulCategory);
     });
 };
+
+
 
 loadAllCategories();
