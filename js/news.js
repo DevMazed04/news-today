@@ -25,7 +25,6 @@ const displayAllCategories = (categories) => {
   });
 };
 
-
 /* ============ load news in a category ============ */
 const loadNewsInACategory = (categoryId, categoryName) => {
   console.log(categoryId);
@@ -35,7 +34,6 @@ const loadNewsInACategory = (categoryId, categoryName) => {
     .then((data) => displayNewsInACategory(data.data, categoryName))
     .catch((error) => console.log(error));
 };
-
 
 /* ============ display news in a category ============ */
 const displayNewsInACategory = (allNews, categoryName) => {
@@ -47,11 +45,11 @@ const displayNewsInACategory = (allNews, categoryName) => {
   allNews.forEach((news) => {
     console.log(news);
     const newsDiv = document.createElement("div");
-    newsDiv.classList.add('col');
+    newsDiv.classList.add("col");
     newsDiv.innerHTML = `
-        <div class="card mb-3" >
+      <div class="container card mb-3" >
         <div class="row g-0">
-          <div class="col-md-4">
+          <div class="col-md-4 mt-2">
             <img
               src="${news.image_url}"
               class="img-fluid rounded-start"
@@ -63,11 +61,37 @@ const displayNewsInACategory = (allNews, categoryName) => {
               <h5 class="card-title">${news.title}</h5>
 
               <p class="card-text">
-                ${news.details.length > 250 ? news.details.slice(0, 250) +
-        "..." : news.details}
+                ${news.details.length > 200
+        ? news.details.slice(0, 200) + "..."
+        : news.details}
               </p>
+              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex gap-2 align-items-center">
+                <div>
+                  <div>
+                    <img class="rounded-pill"
+                      src="${news.author.img}"
+                      width="36px" />
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <p class="fw-semibold text-md">${news.author.name}</p>
+                </div>
+              </div>
+              <div class="d-flex gap-2 mt-3">
+                <p><i class="fa-solid fa-eye"></i></p>
+                <p class="fw-bold">${news.total_view}</p>
+              </div>
 
-            
+              <div class="d-none d-sm-block">
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-solid fa-star text-warning"></i>
+                <i class="fa-regular fa-star-half-stroke text-warning"></i>
+                <i class="fa-regular fa-star text-warning"></i>
+                <i class="fa-regular fa-star text-warning"></i>
+              </div>
+              <button class="btn btn-sm btn-outline-primary">Details</button>
+             </div>
             </div>
           </div>
         </div>
